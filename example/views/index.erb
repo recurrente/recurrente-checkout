@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recurrente Checkout Test</title>
+  <script src="/recurrente-checkout.js?v=1.3"></script>
+</head>
+<body>
+  <h2>Embedded Checkout Test</h2>
+  <div id="checkout-container"></div>
+
+  <script>
+    RecurrenteCheckout.load({
+      url: "https://f468-181-114-8-163.ngrok-free.app/s/neonet/test-producto?iframe=true",
+      onSuccess: function(paymentData) {
+        console.log('Payment completed successfully!', paymentData);
+        // Add a delay before redirecting to success page
+        setTimeout(function() {
+          window.location.href = '/success';
+        }, 2000); // 2 second delay
+      },
+      onFailure: function(error) {
+        console.log('Payment failed!', error);
+      }
+    });
+  </script>
+</body>
+</html>
