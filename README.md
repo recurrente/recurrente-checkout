@@ -158,7 +158,7 @@ La biblioteca incluye logging en consola. Revisa la consola del navegador para i
 
 ## Ejemplo Completo
 
-Consulta el directorio `example/` para una implementación completa funcional usando Sinatra (Ruby).
+Consulta el directorio `examples/` para ejemplos de implementaciones completas.
 
 ## Soporte
 

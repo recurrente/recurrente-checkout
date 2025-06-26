@@ -11,6 +11,7 @@
   'use strict';
 
   function loadRecurrenteCheckout({ url, onSuccess, onFailure }) {
+    console.log("Loading Recurrente Checkout");
     if (!url) {
       console.error("Missing required parameter: url must be provided");
       return;
@@ -22,6 +23,7 @@
       const separator = checkoutUrl.includes('?') ? '&' : '?';
       checkoutUrl = `${checkoutUrl}${separator}embed=true`;
     }
+    console.log("Checkout URL:", checkoutUrl);
 
     const container = document.createElement("div");
     container.id = "recurrente-checkout-container";
