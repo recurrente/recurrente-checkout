@@ -107,14 +107,14 @@ Elige uno de los dos métodos de integración:
 
 ```javascript
 RecurrenteCheckout.load({
-  url: "https://app.recurrente.com/s/your-checkout-url",
+  url: "https://app.recurrente.com/checkout-session/ch_1234",
   onSuccess: function(paymentData) {
-    console.log('Pago exitoso:', paymentData);
+    console.log('Pago exitoso:', paymentData.checkoutId);
     // Manejar pago exitoso
     // ej., redirigir a página de éxito, actualizar UI, etc.
   },
-  onFailure: function(error) {
-    console.log('Pago fallido:', error);
+  onFailure: function(data) {
+    console.log('Pago fallido:', data.error);
     // Manejar pago fallido
     // ej., mostrar mensaje de error, opción de reintentar, etc.
   }

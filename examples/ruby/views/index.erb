@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Recurrente Checkout Test</title>
-  <script src="/recurrente-checkout.js?v=1.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/recurrente-checkout@latest/recurrente-checkout.js"></script>
+
 </head>
 <body>
   <h2>Embedded Checkout Test</h2>
@@ -10,7 +11,7 @@
 
   <script>
     RecurrenteCheckout.load({
-      url: "https://f468-181-114-8-163.ngrok-free.app/s/neonet/test-producto",
+      url: "http://app.recurrente.com/s/max-magic-market/pagar/5/GTQ",
       onSuccess: function(paymentData) {
         console.log('Payment completed successfully!', paymentData);
         // Add a delay before redirecting to success page

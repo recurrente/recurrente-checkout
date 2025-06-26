@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+
+gem "sinatra", "~> 3.0"
+gem "sinatra-cross_origin", "~> 0.4"
+gem "dotenv", "~> 2.8"
+gem "pry", "~> 0.14"
+
+group :development do
+  gem "puma", "~> 6.0"
+end
