@@ -5,6 +5,13 @@
       return;
     }
 
+    // Automatically append iframe=true parameter if not present
+    let checkoutUrl = url;
+    if (!checkoutUrl.includes('iframe=true')) {
+      const separator = checkoutUrl.includes('?') ? '&' : '?';
+      checkoutUrl = `${checkoutUrl}${separator}iframe=true`;
+    }
+
     const container = document.createElement("div");
     container.id = "recurrente-checkout-container";
     container.style.cssText = "width: 100%; max-width: 600px; margin: 0 auto;";
@@ -38,10 +45,10 @@
     console.log("Event listener added"); // Debug log
 
     // If we have a direct checkout URL, use it immediately
-    if (url) {
+    if (checkoutUrl) {
       const iframe = document.createElement("iframe");
       iframe.id = "recurrente-checkout-iframe";
-      iframe.src = url;
+      iframe.src = checkoutUrl;
       iframe.style.cssText = "width: 100%; height: 2000px; border: none; overflow: hidden;";
       iframe.allow = "payment";
       container.innerHTML = "";
