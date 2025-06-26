@@ -5,11 +5,11 @@
       return;
     }
 
-    // Automatically append iframe=true parameter if not present
+    // Automatically append embed=true parameter if not present
     let checkoutUrl = url;
-    if (!checkoutUrl.includes('iframe=true')) {
+    if (!checkoutUrl.includes('embed=true')) {
       const separator = checkoutUrl.includes('?') ? '&' : '?';
-      checkoutUrl = `${checkoutUrl}${separator}iframe=true`;
+      checkoutUrl = `${checkoutUrl}${separator}embed=true`;
     }
 
     const container = document.createElement("div");
