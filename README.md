@@ -2,15 +2,102 @@
 
 Esta guía explica cómo integrar la biblioteca de checkout de Recurrente en tus propios proyectos.
 
+## Instalación
+
+### NPM (Recomendado)
+
+```bash
+npm install recurrente-checkout
+```
+
+### CDN
+
+#### Unpkg
+```html
+<script src="https://unpkg.com/recurrente-checkout@latest/recurrente-checkout.js"></script>
+```
+
+#### jsDelivr
+```html
+<script src="https://cdn.jsdelivr.net/npm/recurrente-checkout@latest/recurrente-checkout.js"></script>
+```
+
+## Uso
+
+### ES6 Modules (Recomendado)
+
+```javascript
+import RecurrenteCheckout from 'recurrente-checkout';
+
+RecurrenteCheckout.load({
+  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  onSuccess: function(paymentData) {
+    console.log('Pago exitoso:', paymentData);
+    // Manejar pago exitoso
+    // ej., redirigir a página de éxito, actualizar UI, etc.
+  },
+  onFailure: function(error) {
+    console.log('Pago fallido:', error);
+    // Manejar pago fallido
+    // ej., mostrar mensaje de error, opción de reintentar, etc.
+  }
+});
+```
+
+### Importación Nominal
+
+```javascript
+import { loadRecurrenteCheckout } from 'recurrente-checkout';
+
+loadRecurrenteCheckout({
+  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  onSuccess: function(paymentData) {
+    console.log('Pago exitoso:', paymentData);
+  },
+  onFailure: function(error) {
+    console.log('Pago fallido:', error);
+  }
+});
+```
+
+### CommonJS
+
+```javascript
+const RecurrenteCheckout = require('recurrente-checkout');
+
+RecurrenteCheckout.load({
+  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  onSuccess: function(paymentData) {
+    console.log('Pago exitoso:', paymentData);
+  },
+  onFailure: function(error) {
+    console.log('Pago fallido:', error);
+  }
+});
+```
+
+### Navegador (Global)
+
+```html
+<script src="https://unpkg.com/recurrente-checkout@latest/recurrente-checkout.js"></script>
+<script>
+  RecurrenteCheckout.load({
+    url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+    onSuccess: function(paymentData) {
+      console.log('Pago exitoso:', paymentData);
+    },
+    onFailure: function(error) {
+      console.log('Pago fallido:', error);
+    }
+  });
+</script>
+```
+
 ## Integración Rápida
 
 ### 1. Incluir la Biblioteca JavaScript
 
-Copia el archivo `example/public/recurrente-checkout.js` a tu proyecto e inclúyelo en tu HTML:
-
-```html
-<script src="/path/to/recurrente-checkout.js"></script>
-```
+Elige uno de los métodos de instalación anteriores.
 
 ### 2. Inicializar el Checkout
 
@@ -77,4 +164,4 @@ Consulta el directorio `example/` para una implementación completa funcional us
 
 - Para preguntas de integración: Revisa esta guía y la implementación de ejemplo
 - Para problemas de API de Recurrente: Contacta al soporte de Recurrente
-- Para preguntas generales: Consulta la documentación oficial de Recurrente 
+- Para preguntas generales: Consulta la documentación oficial de Recurrente

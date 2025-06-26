@@ -1,0 +1,20 @@
+{
+  "name": "recurrente-checkout",
+  "version": "0.0.1",
+  "description": "JavaScript library for integrating Recurrente checkout into web applications",
+  "main": "recurrente-checkout.js",
+  "module": "recurrente-checkout.js",
+  "files": [
+    "recurrente-checkout.js",
+    "README.md"
+  ],
+  "keywords": [
+    "recurrente",
+    "checkout",
+    "payment",
+    "subscription",
+    "billing"
+  ],
+  "author": "Recurrente",
+  "license": "MIT"
+}
