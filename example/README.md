@@ -1,101 +1,101 @@
-# Recurrente Checkout - Complete Integration Example
+# Checkout Recurrente - Ejemplo de Integración Completa
 
-This directory contains a complete working example of Recurrente's embedded checkout integration using Sinatra (Ruby) and vanilla JavaScript.
+Este directorio contiene un ejemplo completo funcional de la integración de checkout embebido de Recurrente usando Sinatra (Ruby) y JavaScript vanilla.
 
-## Quick Start
+## Inicio Rápido
 
-1. **Install dependencies:**
+1. **Instalar dependencias:**
    ```bash
    bundle install
    ```
 
-2. **Run the application:**
+2. **Ejecutar la aplicación:**
    ```bash
    ruby app.rb
    ```
 
-3. **Access the checkout:**
-   Open your browser to `http://localhost:4567`
+3. **Acceder al checkout:**
+   Abre tu navegador en `http://localhost:4567`
 
-## What's Included
+## Lo que Incluye
 
-- **Sinatra Application** (`app.rb`) - Simple web server with CORS support
-- **Client-Side Library** (`public/recurrente-checkout.js`) - JavaScript integration
-- **Checkout Page** (`views/index.erb`) - Main checkout interface
-- **Success Page** (`views/success.erb`) - Payment success confirmation
-- **Failure Page** (`views/failure.erb`) - Payment failure handling
+- **Aplicación Sinatra** (`app.rb`) - Servidor web simple con soporte CORS
+- **Biblioteca del Cliente** (`public/recurrente-checkout.js`) - Integración JavaScript
+- **Página de Checkout** (`views/index.erb`) - Interfaz principal de checkout
+- **Página de Éxito** (`views/success.erb`) - Confirmación de pago exitoso
+- **Página de Fallo** (`views/failure.erb`) - Manejo de fallo de pago
 
-## Features Demonstrated
+## Características Demostradas
 
-- ✅ Embedded checkout iframe integration
-- ✅ Direct checkout URL support
-- ✅ Payment success/failure event handling
-- ✅ Success page with user-friendly UI
-- ✅ Failure page with error messaging
-- ✅ CORS support for cross-origin requests
+- ✅ Integración de iframe de checkout embebido
+- ✅ Soporte para URL de checkout directa
+- ✅ Manejo de eventos de éxito/fallo de pago
+- ✅ Página de éxito con UI amigable
+- ✅ Página de fallo con mensajes de error
+- ✅ Soporte CORS para solicitudes cross-origin
 
-## Application Routes
+## Rutas de la Aplicación
 
 ### GET /
-Displays the main checkout page with the embedded Recurrente checkout interface.
+Muestra la página principal de checkout con la interfaz embebida de checkout de Recurrente.
 
 ### GET /success
-Displays the success page after payment completion.
+Muestra la página de éxito después de completar el pago.
 
 ### GET /failure
-Displays the failure page when payment processing fails.
+Muestra la página de fallo cuando falla el procesamiento del pago.
 
 ### OPTIONS *
-Handles CORS preflight requests for cross-origin access.
+Maneja solicitudes preflight CORS para acceso cross-origin.
 
-## Configuration
+## Configuración
 
-### Environment Variables
-The application loads dotenv but doesn't require any specific environment variables for basic functionality.
+### Variables de Entorno
+La aplicación carga dotenv pero no requiere variables de entorno específicas para funcionalidad básica.
 
-### CORS Settings
-The application includes cross-origin support for development:
-- Allows all origins (`*`) for development
-- Supports GET, POST, and OPTIONS methods
-- Includes necessary headers for Recurrente integration
+### Configuración CORS
+La aplicación incluye soporte cross-origin para desarrollo:
+- Permite todos los orígenes (`*`) para desarrollo
+- Soporta métodos GET, POST y OPTIONS
+- Incluye headers necesarios para integración con Recurrente
 
-### Development Settings
-- Runs on HTTP by default to avoid mixed content issues
-- Binds to `0.0.0.0:4567` for external access
-- Includes commented Content Security Policy for production use
+### Configuración de Desarrollo
+- Se ejecuta en HTTP por defecto para evitar problemas de contenido mixto
+- Se vincula a `0.0.0.0:4567` para acceso externo
+- Incluye Política de Seguridad de Contenido comentada para uso en producción
 
-## Testing
+## Pruebas
 
-### Local Development
-1. Start the application: `ruby app.rb`
-2. Access: `http://localhost:4567`
-3. Monitor console logs for debugging information
+### Desarrollo Local
+1. Inicia la aplicación: `ruby app.rb`
+2. Accede: `http://localhost:4567`
+3. Monitorea logs de consola para información de debugging
 
-### Testing with ngrok
-For testing webhook callbacks or external integrations:
+### Pruebas con ngrok
+Para probar callbacks de webhook o integraciones externas:
 ```bash
 ngrok http 4567
 ```
 
-## Troubleshooting
+## Solución de Problemas
 
-### Common Issues
-1. **Mixed Content Errors**: The app runs on HTTP by default for development
-2. **CORS Issues**: CORS is enabled for all origins in development
-3. **Iframe Loading**: Ensure checkout URL is accessible
+### Problemas Comunes
+1. **Errores de Contenido Mixto**: La app se ejecuta en HTTP por defecto para desarrollo
+2. **Problemas CORS**: CORS está habilitado para todos los orígenes en desarrollo
+3. **Carga de Iframe**: Asegúrate de que la URL de checkout sea accesible
 
-### Debug Mode
-The client-side library includes extensive console logging. Check browser console for detailed information.
+### Modo Debug
+La biblioteca del cliente incluye logging extensivo en consola. Revisa la consola del navegador para información detallada.
 
-## Next Steps
+## Próximos Pasos
 
-This example demonstrates the frontend integration. For production use:
-1. Implement proper error handling and logging
-2. Add input validation and sanitization
-3. Configure proper CORS settings for your domain
-4. Use HTTPS in production
-5. Uncomment and configure Content Security Policy
+Este ejemplo demuestra la integración frontend. Para uso en producción:
+1. Implementa manejo apropiado de errores y logging
+2. Agrega validación de entrada y sanitización
+3. Configura ajustes CORS apropiados para tu dominio
+4. Usa HTTPS en producción
+5. Descomenta y configura la Política de Seguridad de Contenido
 
-## Support
+## Soporte
 
-For issues with this example, check the troubleshooting section above. For Recurrente API questions, refer to their official documentation.
+Para problemas con este ejemplo, revisa la sección de solución de problemas arriba. Para preguntas sobre la API de Recurrente, consulta su documentación oficial.

@@ -1,80 +1,80 @@
-# Recurrente Checkout Plugin - Integration Guide
+# Plugin de Checkout Recurrente - Guía de Integración
 
-This guide explains how to integrate the Recurrente checkout library into your own projects.
+Esta guía explica cómo integrar la biblioteca de checkout de Recurrente en tus propios proyectos.
 
-## Quick Integration
+## Integración Rápida
 
-### 1. Include the JavaScript Library
+### 1. Incluir la Biblioteca JavaScript
 
-Copy the `example/public/recurrente-checkout.js` file to your project and include it in your HTML:
+Copia el archivo `example/public/recurrente-checkout.js` a tu proyecto e inclúyelo en tu HTML:
 
 ```html
 <script src="/path/to/recurrente-checkout.js"></script>
 ```
 
-### 2. Initialize the Checkout
+### 2. Inicializar el Checkout
 
-Choose one of the two integration methods:
+Elige uno de los dos métodos de integración:
 
-#### Method A: Direct Checkout URL
+#### Método A: URL de Checkout Directa
 
 ```javascript
 RecurrenteCheckout.load({
   url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
   onSuccess: function(paymentData) {
-    console.log('Payment successful:', paymentData);
-    // Handle successful payment
-    // e.g., redirect to success page, update UI, etc.
+    console.log('Pago exitoso:', paymentData);
+    // Manejar pago exitoso
+    // ej., redirigir a página de éxito, actualizar UI, etc.
   },
   onFailure: function(error) {
-    console.log('Payment failed:', error);
-    // Handle failed payment
-    // e.g., show error message, retry option, etc.
+    console.log('Pago fallido:', error);
+    // Manejar pago fallido
+    // ej., mostrar mensaje de error, opción de reintentar, etc.
   }
 });
 ```
 
-#### Method B: Product URL
+#### Método B: URL de Producto
 
-You can also use a product URL with the format `https://app.recurrente.com/s/{organization}/{product-slug}`:
+También puedes usar una URL de producto con el formato `https://app.recurrente.com/s/{organization}/{product-slug}`:
 
 ```javascript
 RecurrenteCheckout.load({
   url: "https://app.recurrente.com/s/mi-cuenta/mi-producto?iframe=true",
   onSuccess: function(paymentData) {
-    console.log('Payment successful:', paymentData);
-    // Handle successful payment
-    // e.g., redirect to success page, update UI, etc.
+    console.log('Pago exitoso:', paymentData);
+    // Manejar pago exitoso
+    // ej., redirigir a página de éxito, actualizar UI, etc.
   },
   onFailure: function(error) {
-    console.log('Payment failed:', error);
-    // Handle failed payment
-    // e.g., show error message, retry option, etc.
+    console.log('Pago fallido:', error);
+    // Manejar pago fallido
+    // ej., mostrar mensaje de error, opción de reintentar, etc.
   }
 });
 ```
 
-**Note**: Replace `mi-cuenta` with your organization slug and `mi-producto` with your product slug. The `?iframe=true` parameter is required for embedded checkout functionality.
+**Nota**: Reemplaza `mi-cuenta` con tu slug de organización y `mi-producto` con tu slug de producto. El parámetro `?iframe=true` es requerido para la funcionalidad de checkout embebido.
 
-## Troubleshooting
+## Solución de Problemas
 
-### Common Issues
+### Problemas Comunes
 
-1. **Iframe not loading**: Check that the checkout URL is accessible and includes `?iframe=true`
-2. **CORS errors**: Ensure your backend allows requests from your frontend domain
-3. **API errors**: Verify your Recurrente API keys and permissions
-4. **Mixed content**: Use HTTPS for both frontend and backend in production
+1. **Iframe no carga**: Verifica que la URL de checkout sea accesible e incluya `?iframe=true`
+2. **Errores CORS**: Asegúrate de que tu backend permita solicitudes desde tu dominio frontend
+3. **Errores de API**: Verifica tus claves de API de Recurrente y permisos
+4. **Contenido mixto**: Usa HTTPS tanto para frontend como backend en producción
 
-### Debug Mode
+### Modo Debug
 
-The library includes console logging. Check browser console for detailed information about the checkout process.
+La biblioteca incluye logging en consola. Revisa la consola del navegador para información detallada sobre el proceso de checkout.
 
-## Complete Example
+## Ejemplo Completo
 
-See the `example/` directory for a complete working implementation using Sinatra (Ruby).
+Consulta el directorio `example/` para una implementación completa funcional usando Sinatra (Ruby).
 
-## Support
+## Soporte
 
-- For integration questions: Check this guide and the example implementation
-- For Recurrente API issues: Contact Recurrente support
-- For general questions: Refer to Recurrente's official documentation 
+- Para preguntas de integración: Revisa esta guía y la implementación de ejemplo
+- Para problemas de API de Recurrente: Contacta al soporte de Recurrente
+- Para preguntas generales: Consulta la documentación oficial de Recurrente 
