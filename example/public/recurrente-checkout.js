@@ -48,6 +48,7 @@
       container.appendChild(iframe);
       return;
     }
+  }
 
   global.RecurrenteCheckout = { load: loadRecurrenteCheckout };
 })(window);
