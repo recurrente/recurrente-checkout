@@ -34,6 +34,27 @@ RecurrenteCheckout.load({
 });
 ```
 
+#### Method B: Product URL
+
+You can also use a product URL with the format `https://app.recurrente.com/s/{organization}/{product-slug}`:
+
+```javascript
+RecurrenteCheckout.load({
+  url: "https://app.recurrente.com/s/mi-cuenta/mi-producto?iframe=true",
+  onSuccess: function(paymentData) {
+    console.log('Payment successful:', paymentData);
+    // Handle successful payment
+    // e.g., redirect to success page, update UI, etc.
+  },
+  onFailure: function(error) {
+    console.log('Payment failed:', error);
+    // Handle failed payment
+    // e.g., show error message, retry option, etc.
+  }
+});
+```
+
+**Note**: Replace `mi-cuenta` with your organization slug and `mi-producto` with your product slug. The `?iframe=true` parameter is required for embedded checkout functionality.
 
 ## Troubleshooting
 
