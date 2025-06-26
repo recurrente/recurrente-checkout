@@ -30,7 +30,7 @@ npm install recurrente-checkout
 import RecurrenteCheckout from 'recurrente-checkout';
 
 RecurrenteCheckout.load({
-  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  url: "https://app.recurrente.com/checkout-session/ch_1234",
   onSuccess: function(paymentData) {
     console.log('Pago exitoso:', paymentData);
     // Manejar pago exitoso
@@ -50,7 +50,7 @@ RecurrenteCheckout.load({
 import { loadRecurrenteCheckout } from 'recurrente-checkout';
 
 loadRecurrenteCheckout({
-  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  url: "https://app.recurrente.com/checkout-session/ch_1234",
   onSuccess: function(paymentData) {
     console.log('Pago exitoso:', paymentData);
   },
@@ -66,7 +66,7 @@ loadRecurrenteCheckout({
 const RecurrenteCheckout = require('recurrente-checkout');
 
 RecurrenteCheckout.load({
-  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  url: "https://app.recurrente.com/checkout-session/ch_1234",
   onSuccess: function(paymentData) {
     console.log('Pago exitoso:', paymentData);
   },
@@ -82,7 +82,7 @@ RecurrenteCheckout.load({
 <script src="https://unpkg.com/recurrente-checkout@latest/recurrente-checkout.js"></script>
 <script>
   RecurrenteCheckout.load({
-    url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+    url: "https://app.recurrente.com/s/your-checkout-url",
     onSuccess: function(paymentData) {
       console.log('Pago exitoso:', paymentData);
     },
@@ -107,7 +107,7 @@ Elige uno de los dos métodos de integración:
 
 ```javascript
 RecurrenteCheckout.load({
-  url: "https://app.recurrente.com/s/your-checkout-url?iframe=true",
+  url: "https://app.recurrente.com/s/your-checkout-url",
   onSuccess: function(paymentData) {
     console.log('Pago exitoso:', paymentData);
     // Manejar pago exitoso
@@ -127,7 +127,7 @@ También puedes usar una URL de producto con el formato `https://app.recurrente.
 
 ```javascript
 RecurrenteCheckout.load({
-  url: "https://app.recurrente.com/s/mi-cuenta/mi-producto?iframe=true",
+  url: "https://app.recurrente.com/s/mi-cuenta/mi-producto",
   onSuccess: function(paymentData) {
     console.log('Pago exitoso:', paymentData);
     // Manejar pago exitoso
@@ -141,13 +141,13 @@ RecurrenteCheckout.load({
 });
 ```
 
-**Nota**: Reemplaza `mi-cuenta` con tu slug de organización y `mi-producto` con tu slug de producto. El parámetro `?iframe=true` es requerido para la funcionalidad de checkout embebido.
+**Nota**: Reemplaza `mi-cuenta` con tu slug de organización y `mi-producto` con tu slug de producto.
 
 ## Solución de Problemas
 
 ### Problemas Comunes
 
-1. **Iframe no carga**: Verifica que la URL de checkout sea accesible e incluya `?iframe=true`
+1. **Iframe no carga**: Verifica que la URL de checkout sea accesible
 2. **Errores CORS**: Asegúrate de que tu backend permita solicitudes desde tu dominio frontend
 3. **Errores de API**: Verifica tus claves de API de Recurrente y permisos
 4. **Contenido mixto**: Usa HTTPS tanto para frontend como backend en producción
