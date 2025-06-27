@@ -24,6 +24,8 @@ npm install recurrente-checkout
 
 ## Uso
 
+**Antes de comenzar**: Para usar esta biblioteca, necesitas crear un checkout en Recurrente. Consulta la [documentación de creación de checkouts](https://docs.recurrente.com) para obtener tu URL de checkout.
+
 ### ES6 Modules (Recomendado)
 
 ```javascript
@@ -162,6 +164,6 @@ Consulta el directorio `examples/` para ejemplos de implementaciones completas.
 
 ## Soporte
 
-- Para preguntas de integración: Revisa esta guía y la implementación de ejemplo
-- Para problemas de API de Recurrente: Contacta al soporte de Recurrente
-- Para preguntas generales: Consulta la documentación oficial de Recurrente
+- Para crear checkouts: Consulta la [documentación de creación de checkouts](https://docs.recurrente.com)
+- Para preguntas de integración: Revisa esta guía y las implementaciones de ejemplo
+- Si te quedan más dudas o tienes problemas, únete a nuestro [Discord](https://discord.gg/QhKPEkSKp2)
