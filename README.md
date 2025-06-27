@@ -1,4 +1,4 @@
-# Plugin de Checkout Recurrente - Guía de Integración
+# Checkout Recurrente - Guía de Integración
 
 Esta guía explica cómo integrar la biblioteca de checkout de Recurrente en tus propios proyectos.
 
@@ -42,6 +42,12 @@ RecurrenteCheckout.load({
     console.log('Pago fallido:', error);
     // Manejar pago fallido
     // ej., mostrar mensaje de error, opción de reintentar, etc.
+  },
+  onPaymentInProgress: function() {
+    console.log('Pago con transferencia bancaria en proceso');
+    // Este callback se ejecuta solo para transferencias bancarias
+    // El pago puede tomar hasta 24 horas en procesarse
+    // ej., mostrar mensaje informativo, enviar email de confirmación, etc.
   }
 });
 ```
@@ -58,6 +64,10 @@ loadRecurrenteCheckout({
   },
   onFailure: function(error) {
     console.log('Pago fallido:', error);
+  },
+  onPaymentInProgress: function() {
+    console.log('Pago con transferencia bancaria en proceso');
+    // Solo para transferencias bancarias (puede tomar hasta 24h)
   }
 });
 ```
@@ -74,6 +84,10 @@ RecurrenteCheckout.load({
   },
   onFailure: function(error) {
     console.log('Pago fallido:', error);
+  },
+  onPaymentInProgress: function() {
+    console.log('Pago con transferencia bancaria en proceso');
+    // Solo para transferencias bancarias (puede tomar hasta 24h)
   }
 });
 ```
@@ -90,6 +104,10 @@ RecurrenteCheckout.load({
     },
     onFailure: function(error) {
       console.log('Pago fallido:', error);
+    },
+    onPaymentInProgress: function() {
+      console.log('Pago con transferencia bancaria en proceso');
+      // Solo para transferencias bancarias (puede tomar hasta 24h)
     }
   });
 </script>
@@ -119,6 +137,12 @@ RecurrenteCheckout.load({
     console.log('Pago fallido:', data.error);
     // Manejar pago fallido
     // ej., mostrar mensaje de error, opción de reintentar, etc.
+  },
+  onPaymentInProgress: function() {
+    console.log('Pago con transferencia bancaria en proceso');
+    // Este callback se ejecuta solo para transferencias bancarias
+    // El pago puede tomar hasta 24 horas en procesarse
+    // ej., mostrar mensaje informativo, enviar email de confirmación, etc.
   }
 });
 ```
@@ -139,6 +163,12 @@ RecurrenteCheckout.load({
     console.log('Pago fallido:', error);
     // Manejar pago fallido
     // ej., mostrar mensaje de error, opción de reintentar, etc.
+  },
+  onPaymentInProgress: function() {
+    console.log('Pago con transferencia bancaria en proceso');
+    // Este callback se ejecuta solo para transferencias bancarias
+    // El pago puede tomar hasta 24 horas en procesarse
+    // ej., mostrar mensaje informativo, enviar email de confirmación, etc.
   }
 });
 ```
@@ -161,6 +191,49 @@ La biblioteca incluye logging en consola. Revisa la consola del navegador para i
 ## Ejemplo Completo
 
 Consulta el directorio `examples/` para ejemplos de implementaciones completas.
+
+### Ejemplos Disponibles
+
+#### 🌐 **PHP** (`examples/php/`)
+- **Framework**: PHP vanilla con servidor integrado
+- **Puerto**: 8000
+- **Ejecutar**: `php -S localhost:8000`
+- **Estructura**: Servidor web simple con soporte CORS, páginas de éxito/fallo
+
+#### ⚛️ **React** (`examples/react/`)
+- **Framework**: React 18 con React Router
+- **Puerto**: 3000
+- **Ejecutar**: `npm install && npm start`
+- **Estructura**: Arquitectura basada en componentes, enrutamiento del lado del cliente
+
+#### 🔷 **C#** (`examples/csharp/`)
+- **Framework**: ASP.NET Core 7.0 MVC
+- **Puerto**: 7001 (HTTPS) / 5001 (HTTP)
+- **Ejecutar**: `dotnet run`
+- **Estructura**: Patrón MVC, vistas Razor, servicio de archivos estáticos
+
+#### ☕ **Java** (`examples/java/`)
+- **Framework**: Spring Boot 3.1 con Thymeleaf
+- **Puerto**: 8080
+- **Ejecutar**: `mvn spring-boot:run`
+- **Estructura**: Spring MVC, motor de plantillas Thymeleaf, auto-configuración
+
+#### 🏛️ **ASP Classic** (`examples/asp/`)
+- **Framework**: ASP Classic (VBScript) con IIS
+- **Puerto**: 80 (IIS por defecto)
+- **Ejecutar**: Configurar directorio virtual de IIS
+- **Estructura**: Procesamiento del lado del servidor, manejo de parámetros de consulta
+
+### Inicio Rápido con Ejemplos
+
+1. Navega al directorio de tu tecnología preferida: `cd examples/[tecnología]`
+2. Sigue las instrucciones específicas del README de cada ejemplo
+3. Accede a la aplicación en el puerto correspondiente
+
+### Consideraciones para Producción
+
+- Usa HTTPS en producción
+- Configura webhooks para transferencias bancarias
 
 ## Soporte
 
