@@ -8,7 +8,7 @@ const CheckoutPage = () => {
     // Check if RecurrenteCheckout is available
     if (typeof window.RecurrenteCheckout !== 'undefined') {
       window.RecurrenteCheckout.load({
-        url: "https://f468-181-114-8-163.ngrok-free.app/s/neonet/pay_stkqh5jz",
+        url: "https://app.recurrente.com/s/recurrente-gym/prod_g4pnrrya",
         onSuccess: function(paymentData) {
           console.log('Payment completed successfully!', paymentData.checkoutId);
           alert(`Payment completed successfully! ${paymentData.checkoutId}`);

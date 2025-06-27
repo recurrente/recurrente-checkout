@@ -1,153 +1,192 @@
-# Recurrente Checkout Integration Examples
+# Ejemplos de Integración de Checkout Recurrente
 
-This directory contains complete functional examples of Recurrente embedded checkout integration across multiple programming languages and frameworks.
+Este directorio contiene ejemplos funcionales completos de integración de checkout embebido de Recurrente en múltiples lenguajes de programación y frameworks.
 
-## Available Examples
+## Ejemplos Disponibles
 
 ### 🌐 **PHP** (`php/`)
-- **Framework**: Vanilla PHP with built-in server
-- **Port**: 8000
-- **Run**: `php -S localhost:8000`
-- **Features**: Simple routing, CORS support, static file serving
+- **Framework**: PHP vanilla con servidor integrado
+- **Puerto**: 8000
+- **Ejecutar**: `php -S localhost:8000`
+- **Características**: Enrutamiento simple, soporte CORS, servicio de archivos estáticos
 
 ### ⚛️ **React** (`react/`)
-- **Framework**: React 18 with React Router
-- **Port**: 3000
-- **Run**: `npm install && npm start`
-- **Features**: Component-based architecture, client-side routing, hooks
+- **Framework**: React 18 con React Router
+- **Puerto**: 3000
+- **Ejecutar**: `npm install && npm start`
+- **Características**: Arquitectura basada en componentes, enrutamiento del lado del cliente, hooks
 
 ### 🔷 **C#** (`csharp/`)
 - **Framework**: ASP.NET Core 7.0 MVC
-- **Port**: 7001 (HTTPS) / 5001 (HTTP)
-- **Run**: `dotnet run`
-- **Features**: MVC pattern, Razor views, static file serving
+- **Puerto**: 7001 (HTTPS) / 5001 (HTTP)
+- **Ejecutar**: `dotnet run`
+- **Características**: Patrón MVC, vistas Razor, servicio de archivos estáticos
 
 ### ☕ **Java** (`java/`)
-- **Framework**: Spring Boot 3.1 with Thymeleaf
-- **Port**: 8080
-- **Run**: `mvn spring-boot:run`
-- **Features**: Spring MVC, Thymeleaf templating, auto-configuration
+- **Framework**: Spring Boot 3.1 con Thymeleaf
+- **Puerto**: 8080
+- **Ejecutar**: `mvn spring-boot:run`
+- **Características**: Spring MVC, motor de plantillas Thymeleaf, auto-configuración
 
 ### 🏛️ **ASP Classic** (`asp/`)
-- **Framework**: ASP Classic (VBScript) with IIS
-- **Port**: 80 (IIS default)
-- **Run**: Configure IIS virtual directory
-- **Features**: Server-side processing, query string handling
+- **Framework**: ASP Classic (VBScript) con IIS
+- **Puerto**: 80 (IIS por defecto)
+- **Ejecutar**: Configurar directorio virtual de IIS
+- **Características**: Procesamiento del lado del servidor, manejo de parámetros de consulta
 
-## Quick Start
+## Inicio Rápido
 
-Choose your preferred technology and follow these steps:
+Elige tu tecnología preferida y sigue estos pasos:
 
-### 1. Select an Example
-Navigate to the directory of your preferred technology:
+### 1. Selecciona un Ejemplo
+Navega al directorio de tu tecnología preferida:
 ```bash
-cd examples/[technology]
+cd examples/[tecnología]
 ```
 
-### 2. Follow Technology-Specific Instructions
-Each example has its own README with detailed setup instructions.
+### 2. Sigue las Instrucciones Específicas de la Tecnología
+Cada ejemplo tiene su propio README con instrucciones detalladas de configuración.
 
-### 3. Access the Checkout
-All examples provide the same functionality:
-- Embedded Recurrente checkout interface
-- Success/failure page handling
-- Checkout ID display
-- Error handling
+### 3. Accede al Checkout
+Todos los ejemplos proporcionan la misma funcionalidad:
+- Interfaz de checkout embebido de Recurrente
+- Manejo de páginas de éxito/fallo
+- Visualización del ID de checkout
+- Manejo de errores
 
-## Common Features Across All Examples
+## Características Comunes en Todos los Ejemplos
 
-### ✅ **Core Functionality**
-- Embedded checkout iframe integration
-- Direct checkout URL support
-- Payment success/failure event handling
-- Success page with friendly UI
-- Failure page with error messages
+### ✅ **Funcionalidad Principal**
+- Integración de iframe de checkout embebido
+- Soporte para URL de checkout directa
+- Manejo de eventos de éxito/fallo de pago
+- Página de éxito con UI amigable
+- Página de fallo con mensajes de error
 
-### ✅ **Security Features**
-- CORS support for cross-origin requests
-- Input validation and sanitization
-- XSS prevention measures
-- Proper error handling
+### ✅ **Manejo de Eventos**
+Todos los ejemplos implementan tres eventos principales de pago:
 
-### ✅ **User Experience**
-- Consistent UI design across all examples
-- Responsive layouts
-- Clear success/failure messaging
-- Easy navigation between pages
-
-## Technology Comparison
-
-| Technology | Setup Complexity | Performance | Modern Features | Production Ready |
-|------------|------------------|-------------|-----------------|------------------|
-| PHP        | ⭐⭐☆☆☆         | ⭐⭐⭐☆☆     | ⭐⭐☆☆☆         | ⭐⭐⭐☆☆         |
-| React      | ⭐⭐⭐⭐☆        | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐⭐        | ⭐⭐⭐⭐⭐         |
-| C#         | ⭐⭐⭐⭐☆        | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐⭐        | ⭐⭐⭐⭐⭐         |
-| Java       | ⭐⭐⭐⭐☆        | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐☆        | ⭐⭐⭐⭐⭐         |
-| ASP Classic| ⭐⭐☆☆☆         | ⭐⭐☆☆☆     | ⭐☆☆☆☆         | ⭐⭐☆☆☆         |
-
-## Development Workflow
-
-### 1. **Local Development**
-All examples are configured for local development with hot reloading where applicable.
-
-### 2. **Testing with ngrok**
-For testing webhook callbacks or external integrations:
-```bash
-# For the technology you're using
-ngrok http [port]
+#### `onSuccess`
+Se activa cuando el pago se completa exitosamente (tarjetas de crédito/débito):
+```javascript
+onSuccess: function(paymentData) {
+    console.log('¡Pago completado exitosamente!', paymentData.checkoutId);
+    // Manejar pago exitoso
+}
 ```
 
-### 3. **Debugging**
-- Check browser console for client-side logs
-- Monitor server logs for backend issues
-- Use browser developer tools for network inspection
+#### `onFailure`
+Se activa cuando el pago falla:
+```javascript
+onFailure: function(data) {
+    console.log('El pago falló con el siguiente error:', data.error);
+    // Manejar fallo de pago
+}
+```
 
-## Production Considerations
+#### `onPaymentInProgress`
+Se activa cuando el usuario selecciona pago por transferencia bancaria:
+```javascript
+onPaymentInProgress: function(data) {
+    console.log('Pago por transferencia bancaria iniciado:', data);
+    // Mostrar instrucciones de transferencia bancaria
+    // El pago puede tardar hasta 24 horas en ser acreditado
+}
+```
 
-### 🔒 **Security**
-- Implement proper authentication and authorization
-- Use HTTPS in production
-- Configure appropriate CORS settings
-- Add input validation and sanitization
+**⚠️ Importante**: Para pagos por transferencia bancaria, el evento `onPaymentInProgress` solo indica que el usuario inició el proceso. La confirmación final del pago debe manejarse mediante **webhooks**, ya que la acreditación puede tardar hasta 24 horas.
 
-### 📊 **Monitoring**
-- Add proper logging and error tracking
-- Implement health checks
-- Monitor payment success/failure rates
+### ✅ **Características de Seguridad**
+- Soporte CORS para solicitudes cross-origin
+- Validación y sanitización de entrada
+- Medidas de prevención XSS
+- Manejo adecuado de errores
 
-### 🚀 **Performance**
-- Optimize static asset delivery
-- Implement caching strategies
-- Consider CDN for global distribution
+### ✅ **Experiencia de Usuario**
+- Diseño de UI consistente en todos los ejemplos
+- Diseños responsivos
+- Mensajería clara de éxito/fallo
+- Navegación fácil entre páginas
 
-## Support and Documentation
+## Comparación de Tecnologías
 
-### 📚 **Technology-Specific Docs**
-Each example includes:
-- Detailed README with setup instructions
-- Troubleshooting guides
-- Configuration options
-- Next steps for production
+| Tecnología | Complejidad de Configuración | Rendimiento | Características Modernas | Listo para Producción |
+|------------|-------------------------------|-------------|--------------------------|----------------------|
+| PHP        | ⭐⭐☆☆☆                       | ⭐⭐⭐☆☆     | ⭐⭐☆☆☆                  | ⭐⭐⭐☆☆              |
+| React      | ⭐⭐⭐⭐☆                      | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐⭐                 | ⭐⭐⭐⭐⭐              |
+| C#         | ⭐⭐⭐⭐☆                      | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐⭐                 | ⭐⭐⭐⭐⭐              |
+| Java       | ⭐⭐⭐⭐☆                      | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐☆                 | ⭐⭐⭐⭐⭐              |
+| ASP Classic| ⭐⭐☆☆☆                       | ⭐⭐☆☆☆     | ⭐☆☆☆☆                  | ⭐⭐☆☆☆              |
 
-### 🔗 **External Resources**
-- [Recurrente API Documentation](https://docs.recurrente.com)
-- [Technology-specific documentation](#)
+## Flujo de Desarrollo
 
-### 🐛 **Troubleshooting**
-Common issues across all examples:
-1. **Mixed Content Errors**: Use HTTPS in production
-2. **CORS Issues**: Configure appropriate origins
-3. **Iframe Loading**: Ensure checkout URL accessibility
+### 1. **Desarrollo Local**
+Todos los ejemplos están configurados para desarrollo local con recarga automática donde sea aplicable.
 
-## Contributing
+### 2. **Pruebas con ngrok**
+Para probar callbacks de webhook o integraciones externas:
+```bash
+# Para la tecnología que estés usando
+ngrok http [puerto]
+```
 
-To add a new technology example:
-1. Create a new directory with the technology name
-2. Implement the core checkout functionality
-3. Include success/failure page handling
-4. Add comprehensive README
-5. Test with the provided checkout URL
+### 3. **Depuración**
+- Revisa la consola del navegador para logs del lado del cliente
+- Monitorea logs del servidor para problemas del backend
+- Usa las herramientas de desarrollador del navegador para inspección de red
 
-## License
+## Consideraciones para Producción
 
-These examples are provided as-is for educational and integration purposes. Please refer to the Recurrente terms of service for production use.
+### 🔒 **Seguridad**
+- Implementa autenticación y autorización apropiadas
+- Usa HTTPS en producción
+- Configura ajustes CORS apropiados para tu dominio
+- Agrega validación y sanitización de entrada
+
+### 📊 **Monitoreo**
+- Agrega logging y seguimiento de errores apropiados
+- Implementa verificaciones de salud
+- Monitorea tasas de éxito/fallo de pagos
+
+### 🚀 **Rendimiento**
+- Optimiza la entrega de activos estáticos
+- Implementa estrategias de caché
+- Considera CDN para distribución global
+
+### 🔄 **Webhooks para Transferencias Bancarias**
+Para pagos por transferencia bancaria, implementa webhooks para recibir notificaciones cuando el pago sea acreditado:
+- Configura endpoints para recibir webhooks de Recurrente
+- Maneja el estado de pagos pendientes
+- Actualiza tu base de datos cuando se confirme el pago
+
+## Soporte y Documentación
+
+### 📚 **Documentación Específica de Tecnología**
+Cada ejemplo incluye:
+- README detallado con instrucciones de configuración
+- Guías de solución de problemas
+- Opciones de configuración
+- Próximos pasos para producción
+
+### 🔗 **Recursos Externos**
+- [Documentación de la API de Recurrente](https://docs.recurrente.com)
+- [Documentación específica de tecnología](#)
+
+### 🐛 **Solución de Problemas**
+Problemas comunes en todos los ejemplos:
+1. **Errores de Contenido Mixto**: Usa HTTPS en producción
+2. **Problemas CORS**: Configura orígenes apropiados
+3. **Carga de Iframe**: Asegúrate de que la URL de checkout sea accesible
+
+## Contribución
+
+Para agregar un nuevo ejemplo de tecnología:
+1. Crea un nuevo directorio con el nombre de la tecnología
+2. Implementa la funcionalidad principal de checkout
+3. Incluye manejo de páginas de éxito/fallo
+4. Agrega README completo
+5. Prueba con la URL de checkout proporcionada
+
+## Licencia
+
+Estos ejemplos se proporcionan tal como están para fines educativos y de integración. Por favor consulta los términos de servicio de Recurrente para uso en producción.

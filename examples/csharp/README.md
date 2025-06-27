@@ -1,99 +1,135 @@
-# Checkout Recurrente - C# ASP.NET Core Integration Example
+# Checkout Recurrente - Ejemplo de Integración C# ASP.NET Core
 
-This directory contains a complete functional example of Recurrente embedded checkout integration using ASP.NET Core MVC.
+Este directorio contiene un ejemplo funcional completo de integración de checkout embebido de Recurrente usando ASP.NET Core MVC.
 
-## Quick Start
+## Inicio Rápido
 
-1. **Restore dependencies:**
+1. **Restaura las dependencias:**
    ```bash
    dotnet restore
    ```
 
-2. **Run the application:**
+2. **Ejecuta la aplicación:**
    ```bash
    dotnet run
    ```
 
-3. **Access the checkout:**
-   Open your browser at `https://localhost:7001` or `http://localhost:5001`
+3. **Accede al checkout:**
+   Abre tu navegador en `https://localhost:7001` o `http://localhost:5001`
 
-## What's Included
+## Lo que Incluye
 
-- **ASP.NET Core App** (`Program.cs`) - Main application configuration
-- **Home Controller** (`Controllers/HomeController.cs`) - MVC controller with actions
-- **Checkout View** (`Views/Home/Index.cshtml`) - Main checkout interface
-- **Success View** (`Views/Home/Success.cshtml`) - Payment success confirmation
-- **Failure View** (`Views/Home/Failure.cshtml`) - Payment failure handling
-- **Client Library** (`wwwroot/recurrente-checkout.js`) - JavaScript integration
+- **Aplicación ASP.NET Core** (`Program.cs`) - Configuración principal de la aplicación
+- **Controlador Home** (`Controllers/HomeController.cs`) - Controlador MVC con acciones
+- **Vista de Checkout** (`Views/Home/Index.cshtml`) - Interfaz principal de checkout
+- **Vista de Éxito** (`Views/Home/Success.cshtml`) - Confirmación de pago exitoso
+- **Vista de Fallo** (`Views/Home/Failure.cshtml`) - Manejo de fallo de pago
+- **Biblioteca del Cliente** (`wwwroot/recurrente-checkout.js`) - Integración JavaScript
 
-## Features Demonstrated
+## Características Demostradas
 
-- ✅ Embedded checkout iframe integration
-- ✅ Direct checkout URL support
-- ✅ Payment success/failure event handling
-- ✅ Success page with friendly UI
-- ✅ Failure page with error messages
-- ✅ ASP.NET Core MVC architecture
-- ✅ Static file serving
+- ✅ Integración de iframe de checkout embebido
+- ✅ Soporte para URL de checkout directa
+- ✅ Manejo de eventos de éxito/fallo de pago
+- ✅ Manejo de eventos de pago en progreso
+- ✅ Página de éxito con UI amigable
+- ✅ Página de fallo con mensajes de error
+- ✅ Arquitectura ASP.NET Core MVC
+- ✅ Servicio de archivos estáticos
 
-## Application Routes
+## Manejo de Eventos
+
+El ejemplo implementa tres eventos principales de pago:
+
+### `onSuccess`
+Se activa cuando el pago se completa exitosamente (tarjetas de crédito/débito):
+```javascript
+onSuccess: function(paymentData) {
+    console.log('¡Pago completado exitosamente!', paymentData.checkoutId);
+    // Manejar pago exitoso
+}
+```
+
+### `onFailure`
+Se activa cuando el pago falla:
+```javascript
+onFailure: function(data) {
+    console.log('El pago falló con el siguiente error:', data.error);
+    // Manejar fallo de pago
+}
+```
+
+### `onPaymentInProgress`
+Se activa cuando el usuario selecciona pago por transferencia bancaria:
+```javascript
+onPaymentInProgress: function(data) {
+    console.log('Pago por transferencia bancaria iniciado:', data);
+    // Mostrar instrucciones de transferencia bancaria
+    // El pago puede tardar hasta 24 horas en ser acreditado
+}
+```
+
+**⚠️ Importante**: Para pagos por transferencia bancaria, el evento `onPaymentInProgress` solo indica que el usuario inició el proceso. La confirmación final del pago debe manejarse mediante **webhooks**, ya que la acreditación puede tardar hasta 24 horas.
+
+## Rutas de la Aplicación
 
 ### GET /
-Shows the main checkout page with the embedded Recurrente checkout interface.
+Muestra la página principal de checkout con la interfaz embebida de checkout de Recurrente.
 
 ### GET /Home/Success
-Shows the success page after completing payment.
+Muestra la página de éxito después de completar el pago.
 
 ### GET /Home/Failure
-Shows the failure page when payment processing fails.
+Muestra la página de fallo cuando falla el procesamiento del pago.
 
-## Controller Structure
+## Estructura del Controlador
 
 ### HomeController
-- `Index()` - Returns the main checkout view
-- `Success(string checkoutId)` - Returns success view with checkout ID
-- `Failure()` - Returns failure view
+- `Index()` - Retorna la vista principal de checkout
+- `Success(string checkoutId)` - Retorna vista de éxito con ID de checkout
+- `Failure()` - Retorna vista de fallo
 
-## Configuration
+## Configuración
 
-### Development Configuration
-- Runs on HTTPS by default (localhost:7001)
-- HTTP fallback available (localhost:5001)
-- Static files served from wwwroot directory
-- MVC routing configured
+### Configuración de Desarrollo
+- Se ejecuta en HTTPS por defecto (localhost:7001)
+- Fallback HTTP disponible (localhost:5001)
+- Archivos estáticos servidos desde directorio wwwroot
+- Enrutamiento MVC configurado
 
-## Testing
+## Pruebas
 
-### Local Development
-1. Start the application: `dotnet run`
-2. Access: `https://localhost:7001`
-3. Monitor console logs for debugging information
+### Desarrollo Local
+1. Inicia la aplicación: `dotnet run`
+2. Accede: `https://localhost:7001`
+3. Monitorea logs de consola para información de debugging
 
-### Testing with ngrok
-To test webhook callbacks or external integrations:
+### Pruebas con ngrok
+Para probar callbacks de webhook o integraciones externas:
 ```bash
 ngrok http 5001
 ```
 
-## Troubleshooting
+## Solución de Problemas
 
-### Common Issues
-1. **HTTPS Certificate**: Development certificate may need to be trusted
-2. **Port Conflicts**: Check if ports 5001/7001 are available
-3. **Iframe Loading**: Make sure the checkout URL is accessible
+### Problemas Comunes
+1. **Certificado HTTPS**: El certificado de desarrollo puede necesitar ser confiado
+2. **Conflictos de Puerto**: Verifica si los puertos 5001/7001 están disponibles
+3. **Carga de Iframe**: Asegúrate de que la URL de checkout sea accesible
 
-### Debug Mode
-The client library includes extensive console logging. Check the browser console for detailed information.
+### Modo Debug
+La biblioteca del cliente incluye logging extensivo en consola. Revisa la consola del navegador para información detallada.
 
-## Next Steps
+## Próximos Pasos
 
-This example demonstrates frontend integration. For production use:
-1. Implement proper error handling and logging
-2. Add input validation and sanitization
-3. Configure appropriate CORS settings for your domain
-4. Use HTTPS in production
-5. Add proper authentication and authorization
+Este ejemplo demuestra la integración frontend. Para uso en producción:
+1. Implementa manejo apropiado de errores y logging
+2. Agrega validación de entrada y sanitización
+3. Configura ajustes CORS apropiados para tu dominio
+4. Usa HTTPS en producción
+5. Agrega autenticación y autorización apropiadas
+6. **Implementa webhooks para manejar confirmaciones de transferencias bancarias**
 
-## Support
+## Soporte
 
-For issues with this example, check the troubleshooting section above. For questions about the Recurrente API, consult their official documentation.
+Para problemas con este ejemplo, revisa la sección de solución de problemas arriba. Para preguntas sobre la API de Recurrente, consulta su documentación oficial.

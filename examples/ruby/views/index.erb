@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Recurrente Checkout Test</title>
+  <title>Recurrente Checkout Ruby</title>
   <script src="/recurrente-checkout.js?v=<%= Time.now.to_i %>"></script>
 </head>
 <body>
-  <h2>Embedded Checkout Test</h2>
+  <h2>Embedded Checkout Test - Ruby</h2>
   <div id="checkout-container"></div>
 
   <script>
     RecurrenteCheckout.load({
-      development: true,
-      url: "https://f468-181-114-8-163.ngrok-free.app/s/neonet/pay_stkqh5jz",
+      url: "https://app.recurrente.com/s/recurrente-gym/prod_g4pnrrya",
       onSuccess: function(paymentData) {
         console.log('Payment completed successfully!', paymentData.checkoutId);
         alert(`Payment completed successfully! ${paymentData.checkoutId}`);

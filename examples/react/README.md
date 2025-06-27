@@ -1,106 +1,142 @@
-# Checkout Recurrente - React Integration Example
+# Checkout Recurrente - Ejemplo de Integración React
 
-This directory contains a complete functional example of Recurrente embedded checkout integration using React and React Router.
+Este directorio contiene un ejemplo funcional completo de integración de checkout embebido de Recurrente usando React y React Router.
 
-## Quick Start
+## Inicio Rápido
 
-1. **Install dependencies:**
+1. **Instala las dependencias:**
    ```bash
    npm install
    ```
 
-2. **Start the development server:**
+2. **Inicia el servidor de desarrollo:**
    ```bash
    npm start
    ```
 
-3. **Access the checkout:**
-   Open your browser at `http://localhost:3000`
+3. **Accede al checkout:**
+   Abre tu navegador en `http://localhost:3000`
 
-## What's Included
+## Lo que Incluye
 
-- **React App** (`src/App.js`) - Main application with routing
-- **Checkout Component** (`src/components/CheckoutPage.js`) - Main checkout interface
-- **Success Component** (`src/components/SuccessPage.js`) - Payment success confirmation
-- **Failure Component** (`src/components/FailurePage.js`) - Payment failure handling
-- **Client Library** (`public/recurrente-checkout.js`) - JavaScript integration
+- **Aplicación React** (`src/App.js`) - Aplicación principal con enrutamiento
+- **Componente de Checkout** (`src/components/CheckoutPage.js`) - Interfaz principal de checkout
+- **Componente de Éxito** (`src/components/SuccessPage.js`) - Confirmación de pago exitoso
+- **Componente de Fallo** (`src/components/FailurePage.js`) - Manejo de fallo de pago
+- **Biblioteca del Cliente** (`public/recurrente-checkout.js`) - Integración JavaScript
 
-## Features Demonstrated
+## Características Demostradas
 
-- ✅ Embedded checkout iframe integration
-- ✅ Direct checkout URL support
-- ✅ Payment success/failure event handling
-- ✅ Success page with friendly UI
-- ✅ Failure page with error messages
-- ✅ React Router for navigation
-- ✅ React hooks for state management
+- ✅ Integración de iframe de checkout embebido
+- ✅ Soporte para URL de checkout directa
+- ✅ Manejo de eventos de éxito/fallo de pago
+- ✅ Manejo de eventos de pago en progreso
+- ✅ Página de éxito con UI amigable
+- ✅ Página de fallo con mensajes de error
+- ✅ React Router para navegación
+- ✅ React hooks para manejo de estado
 
-## Application Routes
+## Manejo de Eventos
+
+El ejemplo implementa tres eventos principales de pago:
+
+### `onSuccess`
+Se activa cuando el pago se completa exitosamente (tarjetas de crédito/débito):
+```javascript
+onSuccess: function(paymentData) {
+    console.log('¡Pago completado exitosamente!', paymentData.checkoutId);
+    // Manejar pago exitoso
+}
+```
+
+### `onFailure`
+Se activa cuando el pago falla:
+```javascript
+onFailure: function(data) {
+    console.log('El pago falló con el siguiente error:', data.error);
+    // Manejar fallo de pago
+}
+```
+
+### `onPaymentInProgress`
+Se activa cuando el usuario selecciona pago por transferencia bancaria:
+```javascript
+onPaymentInProgress: function(data) {
+    console.log('Pago por transferencia bancaria iniciado:', data);
+    // Mostrar instrucciones de transferencia bancaria
+    // El pago puede tardar hasta 24 horas en ser acreditado
+}
+```
+
+**⚠️ Importante**: Para pagos por transferencia bancaria, el evento `onPaymentInProgress` solo indica que el usuario inició el proceso. La confirmación final del pago debe manejarse mediante **webhooks**, ya que la acreditación puede tardar hasta 24 horas.
+
+## Rutas de la Aplicación
 
 ### GET /
-Shows the main checkout page with the embedded Recurrente checkout interface.
+Muestra la página principal de checkout con la interfaz embebida de checkout de Recurrente.
 
 ### GET /success
-Shows the success page after completing payment.
+Muestra la página de éxito después de completar el pago.
 
 ### GET /failure
-Shows the failure page when payment processing fails.
+Muestra la página de fallo cuando falla el procesamiento del pago.
 
-## Component Structure
+## Estructura de Componentes
 
 ### CheckoutPage
-- Uses `useEffect` to initialize Recurrente checkout
-- Handles success/failure callbacks
-- Uses React Router's `useNavigate` for navigation
+- Usa `useEffect` para inicializar el checkout de Recurrente
+- Maneja callbacks de éxito/fallo
+- Usa `useNavigate` de React Router para navegación
 
 ### SuccessPage
-- Displays payment success message
-- Shows checkout ID from URL parameters
-- Uses React Router's `useSearchParams` for query parsing
+- Muestra mensaje de éxito de pago
+- Muestra ID de checkout desde parámetros de URL
+- Usa `useSearchParams` de React Router para parsing de consultas
 
 ### FailurePage
-- Displays payment failure message
-- Provides retry option
+- Muestra mensaje de fallo de pago
+- Proporciona opción de reintentar
 
-## Configuration
+## Configuración
 
-### Development Configuration
-- Runs on `localhost:3000` by default
-- Hot reloading enabled for development
-- Includes Recurrente checkout script in public/index.html
+### Configuración de Desarrollo
+- Se ejecuta en `localhost:3000` por defecto
+- Hot reloading habilitado para desarrollo
+- Incluye script de checkout de Recurrente en public/index.html
 
-## Testing
+## Pruebas
 
-### Local Development
-1. Start the application: `npm start`
-2. Access: `http://localhost:3000`
-3. Monitor console logs for debugging information
+### Desarrollo Local
+1. Inicia la aplicación: `npm start`
+2. Accede: `http://localhost:3000`
+3. Monitorea logs de consola para información de debugging
 
-### Testing with ngrok
-To test webhook callbacks or external integrations:
+### Pruebas con ngrok
+Para probar callbacks de webhook o integraciones externas:
 ```bash
 ngrok http 3000
 ```
 
-## Troubleshooting
+## Solución de Problemas
 
-### Common Issues
-1. **Mixed Content Errors**: The app runs on HTTP by default for development
-2. **CORS Issues**: CORS is handled by the Recurrente checkout library
-3. **Iframe Loading**: Make sure the checkout URL is accessible
+### Problemas Comunes
+1. **Errores de Contenido Mixto**: La app se ejecuta en HTTP por defecto para desarrollo
+2. **Problemas CORS**: CORS es manejado por la biblioteca de checkout de Recurrente
+3. **Carga de Iframe**: Asegúrate de que la URL de checkout sea accesible
 
-### Debug Mode
-The client library includes extensive console logging. Check the browser console for detailed information.
+### Modo Debug
+La biblioteca del cliente incluye logging extensivo en consola. Revisa la consola del navegador para información detallada.
 
-## Next Steps
+## Próximos Pasos
 
-This example demonstrates frontend integration. For production use:
-1. Implement proper error handling and logging
-2. Add input validation and sanitization
-3. Configure appropriate CORS settings for your domain
-4. Use HTTPS in production
-5. Add proper TypeScript types if using TypeScript
+Este ejemplo demuestra la integración frontend. Para uso en producción:
+1. Implementa manejo apropiado de errores y logging
+2. Agrega validación de entrada y sanitización
+3. Configura ajustes CORS apropiados para tu dominio
+4. Usa HTTPS en producción
+5. Agrega tipos TypeScript apropiados si usas TypeScript
+6. **Implementa webhooks para manejar confirmaciones de transferencias bancarias**
 
-## Support
+## Soporte
 
-For issues with this example, check the troubleshooting section above. For questions about the Recurrente API, consult their official documentation.
+Para problemas con este ejemplo, revisa la sección de solución de problemas arriba. Para preguntas sobre la API de Recurrente, consulta su documentación oficial.
