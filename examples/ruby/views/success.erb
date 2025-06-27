@@ -31,6 +31,16 @@
       line-height: 1.6;
       margin-bottom: 30px;
     }
+    .checkout-id {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 14px;
+      color: #495057;
+    }
     .back-button {
       background-color: #007bff;
       color: white;
@@ -50,8 +60,24 @@
     <div class="success-icon">✅</div>
     <h1>Payment Successful!</h1>
     <p>Thank you for your purchase. Your payment has been processed successfully.</p>
+
+    <div id="checkout-id-display" class="checkout-id" style="display: none;">
+      <strong>Checkout ID:</strong> <span id="checkout-id-value"></span>
+    </div>
+
     <p>You will receive a confirmation email shortly with your order details.</p>
     <a href="/" class="back-button">Return to Home</a>
   </div>
+
+  <script>
+    // Extract checkout_id from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkoutId = urlParams.get('checkoutId');
+
+    if (checkoutId) {
+      document.getElementById('checkout-id-value').textContent = checkoutId;
+      document.getElementById('checkout-id-display').style.display = 'block';
+    }
+  </script>
 </body>
-</html> 
+</html>
