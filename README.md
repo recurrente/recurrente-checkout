@@ -26,6 +26,16 @@ npm install recurrente-checkout
 
 **Antes de comenzar**: Para usar esta biblioteca, necesitas crear un checkout en Recurrente. Consulta la [documentación de creación de checkouts](https://docs.recurrente.com) para obtener tu URL de checkout.
 
+### ¿Dónde aparece el checkout?
+
+El checkout de Recurrente se renderiza como un iframe que se inserta automáticamente en el elemento HTML con el ID `recurrente-checkout-container`. Asegúrate de tener este elemento en tu página:
+
+```html
+<div id="recurrente-checkout-container"></div>
+```
+
+El iframe se ajustará automáticamente al tamaño del contenedor y será responsive. Puedes personalizar la apariencia aplicando estilos CSS al contenedor.
+
 ### ES6 Modules (Recomendado)
 
 ```javascript
