@@ -35,10 +35,12 @@
       checkoutUrl = `${checkoutUrl}${separator}embed=true`;
     }
 
-    const container = document.createElement("div");
-    container.id = "recurrente-checkout-container";
-    container.style.cssText = "width: 100%; max-width: 600px; margin: 0 auto;";
-    document.body.appendChild(container);
+    let container = document.getElementById("recurrente-checkout-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "recurrente-checkout-container";
+      document.body.appendChild(container);
+    }
 
     // Set up event listener for messages from iframe
     const handleMessage = (event) => {
