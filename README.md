@@ -1,6 +1,8 @@
 # Checkout Recurrente - Guía de Integración
 
-Esta guía explica cómo integrar la biblioteca de checkout de Recurrente en tus propios proyectos.
+![npm version](https://img.shields.io/npm/v/recurrente-checkout.svg)
+
+**Recurrente Checkout** es una librería JavaScript que te permite **insertar un checkout responsivo y seguro en tu propia página web**. Muestra un iframe con tu sesión de pago y maneja callbacks para eventos clave como éxito, fallo o pagos en proceso.
 
 ## Instalación
 
@@ -12,7 +14,9 @@ npm install recurrente-checkout
 
 ### CDN
 
+⚠️ En producción, recomendamos usar una versión específica (por ejemplo, @0.0.4) en lugar de @latest, para evitar romper integraciones al actualizar automáticamente.
 #### Unpkg
+
 ```html
 <script src="https://unpkg.com/recurrente-checkout@latest/recurrente-checkout.js"></script>
 ```
