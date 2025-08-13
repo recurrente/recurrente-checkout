@@ -185,11 +185,24 @@ RecurrenteCheckout.load({
 
 **Nota**: Reemplaza `mi-cuenta` con tu slug de organización y `mi-producto` con tu slug de producto.
 
-## Manejo de Errores y Notificaciones
+## Callbacks y Manejo de Respuestas
+
+### Callback `onSuccess`
+
+El callback `onSuccess` se ejecuta cuando el pago se completa exitosamente:
+
+```javascript
+onSuccess: function(paymentData) {
+  console.log('Pago exitoso:', paymentData);
+
+  // Manejar pago exitoso
+  // ej., redirigir a página de éxito, actualizar UI, etc.
+}
+```
 
 ### Callback `onFailure`
 
-El callback `onFailure` recibe un objeto `message` que puede contener información adicional sobre el fallo del pago:
+El callback `onFailure` se ejecuta cuando el pago falla:
 
 ```javascript
 onFailure: function(message) {
@@ -205,6 +218,18 @@ onFailure: function(message) {
   // Manejar pago fallido
   // if (message.error) {
     // ej., mostrar mensaje de error, redireccionar a pagina de error, etc.
+  }
+}
+```
+
+### Callback `onPaymentInProgress`
+
+El callback `onPaymentInProgress` se ejecuta solo para transferencias bancarias en proceso:
+
+```javascript
+onPaymentInProgress: function(paymentData) {
+  console.log('Pago con transferencia bancaria en proceso:', paymentData);
+  // ej., mostrar mensaje informativo, enviar email de confirmación, etc.
 }
 ```
 
