@@ -185,6 +185,29 @@ RecurrenteCheckout.load({
 
 **Nota**: Reemplaza `mi-cuenta` con tu slug de organización y `mi-producto` con tu slug de producto.
 
+## Manejo de Errores y Notificaciones
+
+### Callback `onFailure`
+
+El callback `onFailure` recibe un objeto `message` que puede contener información adicional sobre el fallo del pago:
+
+```javascript
+onFailure: function(message) {
+  console.log('Pago fallido:', message);
+
+  // Opcional: Manejar mensajes de notificación específicos
+  if (message.notice) {
+    console.log('Mensaje de notificación:', message.notice);
+    // Mostrar mensaje personalizado al usuario
+    // Por ejemplo: "Tarjeta rechazada", "Fondos insuficientes", etc.
+  }
+
+  // Manejar pago fallido
+  // if (message.error) {
+    // ej., mostrar mensaje de error, redireccionar a pagina de error, etc.
+}
+```
+
 ## Solución de Problemas
 
 ### Problemas Comunes

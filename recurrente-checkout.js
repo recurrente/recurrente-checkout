@@ -63,8 +63,6 @@
           onFailure(event.data);
         }
 
-        // Remove the event listener after failed payment
-        window.removeEventListener('message', handleMessage);
         // Reset the active flag
         isActive = false;
       } else if (event.data && event.data.type === 'recurrente-plugin:payment-in-progress') {
