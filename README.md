@@ -210,20 +210,21 @@ onSuccess: function(paymentData) {
 El callback `onFailure` se ejecuta cuando el pago falla:
 
 ```javascript
-onFailure: function(message) {
-  console.log('Pago fallido:', message);
+onFailure: function(data) {
+  console.log('Pago fallido:', data);
 
-  // Opcional: Manejar mensajes de notificación específicos
-  if (message.notice) {
-    console.log('Mensaje de notificación:', message.notice);
-    // Mostrar mensaje personalizado al usuario
+  // Verificar el tipo de mensaje para determinar cómo manejarlo
+  if (data.type === 'notice') {
+    console.log('Mensaje de notificación:', data.message);
+    // Manejar mensaje de tipo notice
     // Por ejemplo: "Tarjeta rechazada", "Fondos insuficientes", etc.
+  } else if (data.type === 'error') {
+    console.log('Mensaje de error:', data.message);
+    // Manejar mensaje de tipo error
   }
 
-  // Manejar pago fallido
-  // if (message.error) {
-    // ej., mostrar mensaje de error, redireccionar a pagina de error, etc.
-  }
+  // Manejar pago fallido basado en el tipo
+  // ej., mostrar mensaje de error, redireccionar a pagina de error, etc.
 }
 ```
 

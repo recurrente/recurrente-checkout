@@ -8,23 +8,37 @@ const CheckoutPage = () => {
     // Check if RecurrenteCheckout is available
     if (typeof window.RecurrenteCheckout !== 'undefined') {
       window.RecurrenteCheckout.load({
-        url: "https://app.recurrente.com/s/recurrente-gym/prod_g4pnrrya",
+        url: "https://app.recurrente.com/checkout-session/ch_sample123",
         onSuccess: function(paymentData) {
-          console.log('Payment completed successfully!', paymentData.checkoutId);
-          alert(`Payment completed successfully! ${paymentData.checkoutId}`);
-          // Add a delay before redirecting to success page
+          console.log('Payment completed successfully!', paymentData);
+          // Handle successful payment
+          // e.g., redirect to success page, update UI, etc.
           setTimeout(function() {
             navigate(`/success?checkoutId=${paymentData.checkoutId}`);
-          }, 2000); // 2 second delay
+          }, 2000);
         },
         onFailure: function(data) {
-          console.log('Payment failed with the following error:', data.error);
-          alert(`Payment failed with the following error: ${data.error}`);
+          console.log('Payment failed:', data);
+
+          // Check message type to determine how to handle it
+          if (data.type === 'notice') {
+            console.log('Notice message:', data.message);
+            // Handle notice type message
+            // e.g., "Card declined", "Insufficient funds", etc.
+          } else if (data.type === 'error') {
+            console.log('Error message:', data.message);
+            // Handle error type message
+          }
+
+          // Handle payment failure based on type
+          // e.g., show error message, redirect to error page, etc.
           navigate('/failure');
         },
-        onPaymentInProgress: function(data) {
-          console.log('Payment in progress:', data);
-          alert(`Payment in progress: ${data.checkoutId}`);
+        onPaymentInProgress: function(paymentData) {
+          console.log('Payment with bank transfer in progress:', paymentData);
+          // This callback only executes for bank transfers
+          // Payment can take up to 24 hours to process
+          // e.g., show informational message, send confirmation email, etc.
         }
       });
     } else {

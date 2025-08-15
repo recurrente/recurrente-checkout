@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pago fallido</title>
+  <style>
+    :root {
+      --bad:#dc2626;
+      --ink:#111827;
+      --sub:#6b7280;
+      --bg:#f9fafb;
+      --card:#ffffff;
+    }
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:var(--bg);
+      color:var(--ink);
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 4rem auto;
+      background:var(--card);
+      padding:2rem;
+      border-radius:12px;
+      box-shadow:0 6px 24px rgba(0,0,0,.06);
+    }
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      font-weight:600;
+      color:var(--bad);
+    }
+    .badge svg {
+      width:22px;
+      height:22px;
+    }
+    .muted { color:var(--sub); }
+    .row { margin:1rem 0; }
+    .btns {
+      display:flex;
+      gap:.75rem;
+      margin-top:1.25rem;
+      flex-wrap:wrap;
+    }
+    .btn {
+      padding:.75rem 1rem;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      border:1px solid #e5e7eb;
+      background:#fff;
+    }
+    .btn.primary {
+      background:#ea580c;
+      color:#fff;
+      border-color:#ea580c;
+    }
+    code {
+      background:#f3f4f6;
+      padding:.25rem .5rem;
+      border-radius:6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      El pago no se pudo completar
+    </div>
+
+    <h1>Intenta nuevamente</h1>
+    <p class="muted">Puede deberse a fondos insuficientes, datos inválidos o un problema temporal con el emisor.</p>
+
+    <div class="row">
+      <div class="muted">ID de checkout</div>
+      <div><code><%= params[:checkoutId] %></code></div>
+    </div>
+
+    <% if params[:error] %>
+      <p class="muted"><strong>Error:</strong> <%= params[:error] %></p>
+    <% end %>
+
+    <div class="btns">
+      <a class="btn primary" href="/">Volver al pago</a>
+      <a class="btn" href="mailto:soporte@recurrente.com?subject=Ayuda%20con%20pago%20<%= params[:checkoutId] %>">Contactar soporte</a>
+    </div>
+  </div>
+</body>
+</html>

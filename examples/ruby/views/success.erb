@@ -1,83 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Payment Successful - Recurrente Checkout</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pago exitoso</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      text-align: center;
-      background-color: #f5f5f5;
-    }
-    .success-container {
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .success-icon {
-      color: #28a745;
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      color: #28a745;
-      margin-bottom: 20px;
-    }
-    p {
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-    .checkout-id {
-      background-color: #f8f9fa;
-      border: 1px solid #dee2e6;
-      border-radius: 5px;
-      padding: 15px;
-      margin: 20px 0;
-      font-family: monospace;
-      font-size: 14px;
-      color: #495057;
-    }
-    .back-button {
-      background-color: #007bff;
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-    .back-button:hover {
-      background-color: #0056b3;
-    }
+    :root { --ok:#16a34a; --ink:#111827; --sub:#6b7280; --bg:#f9fafb; --card:#ffffff; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--ink); }
+    .wrap { max-width: 720px; margin: 4rem auto; background:var(--card); padding:2rem; border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,.06); }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; font-weight:600; color:var(--ok); }
+    .badge svg { width:22px; height:22px; }
+    .muted { color:var(--sub); }
+    .row { margin:1rem 0; }
+    .grid { display:grid; grid-template-columns:1fr auto; gap:.5rem 1rem; }
+    .btns { display:flex; gap:.75rem; margin-top:1.25rem; flex-wrap:wrap;}
+    .btn { padding:.75rem 1rem; border-radius:10px; text-decoration:none; font-weight:600; border:1px solid #e5e7eb; background:#fff; }
+    .btn.primary { background:#ea580c; color:#fff; border-color:#ea580c; }
+    code { background:#f3f4f6; padding:.25rem .5rem; border-radius:6px; }
   </style>
 </head>
 <body>
-  <div class="success-container">
-    <div class="success-icon">✅</div>
-    <h1>Payment Successful!</h1>
-    <p>Thank you for your purchase. Your payment has been processed successfully.</p>
-
-    <div id="checkout-id-display" class="checkout-id" style="display: none;">
-      <strong>Checkout ID:</strong> <span id="checkout-id-value"></span>
+  <div class="wrap">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      ¡Pago completado!
     </div>
 
-    <p>You will receive a confirmation email shortly with your order details.</p>
-    <a href="/" class="back-button">Return to Home</a>
+    <h1>Gracias por tu compra</h1>
+    <p class="muted">Tu pedido ha sido confirmado. En breve recibirás un correo con los detalles.</p>
+
+    <div class="row grid">
+      <div class="muted">ID de checkout</div>
+      <div><code><%= params[:checkoutId] %></code></div>
+
+      <% if params[:amount] %>
+        <div class="muted">Total</div>
+        <div>Q<%= params[:amount] %></div>
+      <% end %>
+
+      <% if params[:product] %>
+        <div class="muted">Producto</div>
+        <div><%= params[:product] %></div>
+      <% end %>
+    </div>
+
+    <div class="btns">
+      <% if params[:receipt_url] %>
+        <a class="btn" href="<%= params[:receipt_url] %>" target="_blank" rel="noopener">Ver recibo</a>
+      <% end %>
+      <a class="btn primary" href="/">Volver a la tienda</a>
+    </div>
   </div>
-
-  <script>
-    // Extract checkout_id from URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const checkoutId = urlParams.get('checkoutId');
-
-    if (checkoutId) {
-      document.getElementById('checkout-id-value').textContent = checkoutId;
-      document.getElementById('checkout-id-display').style.display = 'block';
-    }
-  </script>
 </body>
 </html>
