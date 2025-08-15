@@ -46,10 +46,10 @@
     const handleMessage = (event) => {
       if (!development && event.origin !== 'https://app.recurrente.com') return
 
-      if (event.data && event.data.type === 'recurrente-plugin:payment-success') {
+      if (event.data && event.data.event === 'recurrente-plugin:payment-success') {
         console.log('Payment successful:', event.data);
         if (onSuccess && typeof onSuccess === 'function') {
-          onSuccess(event.data);
+          onSuccess({type: event.data.type, message: event.data.message});
         }
 
         // Remove the event listener after successful payment
@@ -57,18 +57,18 @@
         // Reset the active flag
         isActive = false;
 
-      } else if (event.data && event.data.type === 'recurrente-plugin:payment-failed') {
+      } else if (event.data && event.data.event === 'recurrente-plugin:payment-failed') {
         console.log('Payment failed:', event.data);
         if (onFailure && typeof onFailure === 'function') {
-          onFailure(event.data);
+          onFailure({type: event.data.type, message: event.data.message});
         }
 
         // Reset the active flag
         isActive = false;
-      } else if (event.data && event.data.type === 'recurrente-plugin:payment-in-progress') {
+      } else if (event.data && event.data.event === 'recurrente-plugin:payment-in-progress') {
         console.log('Payment in progress:', event.data);
         if (onPaymentInProgress && typeof onPaymentInProgress === 'function') {
-          onPaymentInProgress(event.data);
+          onPaymentInProgress({type: event.data.type, message: event.data.message});
         }
       }
     };
