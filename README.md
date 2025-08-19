@@ -27,6 +27,13 @@ npm install recurrente-checkout
 <script src="https://cdn.jsdelivr.net/npm/recurrente-checkout@latest/recurrente-checkout.js"></script>
 ```
 
+## Demo
+
+🎥 **Mira la librería en acción**:
+
+[![Demo](media/demo.gif)](https://youtu.be/OUIYVcrnPr0)
+
+
 ## Uso
 
 **Antes de comenzar**: Para usar esta biblioteca, necesitas crear un checkout en Recurrente. Consulta la [documentación de creación de checkouts](https://docs.recurrente.com) para obtener tu URL de checkout.
