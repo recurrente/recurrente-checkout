@@ -1,4 +1,5 @@
 require "pry"
+require "ipaddr"
 require 'sinatra'
 require 'sinatra/cross_origin'
 require 'json'
@@ -13,6 +14,15 @@ enable :cross_origin
 # Comment out the line below if you need HTTPS for local testing
 set :bind, '0.0.0.0'
 set :port, 4567
+set :host_authorization, {
+  permitted_hosts: [
+    ".localhost",
+    ".test",
+    ".ngrok-free.app",
+    IPAddr.new("0.0.0.0/0"),
+    IPAddr.new("::/0")
+  ]
+}
 
 # Allow CORS for all routes
 before do
@@ -40,7 +50,6 @@ end
 get "/failure" do
   erb :failure
 end
-
 
 
 

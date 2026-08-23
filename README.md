@@ -272,18 +272,19 @@ Consulta el directorio `examples/` para ejemplos de implementaciones completas.
 
 #### ⚛️ **React** (`examples/react/`)
 - **Framework**: React 18 con React Router
+- **Requisito**: Node.js `^20.19.0` o `>=22.12.0`
 - **Puerto**: 3000
 - **Ejecutar**: `npm install && npm start`
 - **Estructura**: Arquitectura basada en componentes, enrutamiento del lado del cliente
 
 #### 🔷 **C#** (`examples/csharp/`)
-- **Framework**: ASP.NET Core 7.0 MVC
+- **Framework**: ASP.NET Core 8.0 MVC
 - **Puerto**: 7001 (HTTPS) / 5001 (HTTP)
 - **Ejecutar**: `dotnet run`
 - **Estructura**: Patrón MVC, vistas Razor, servicio de archivos estáticos
 
 #### ☕ **Java** (`examples/java/`)
-- **Framework**: Spring Boot 3.1 con Thymeleaf
+- **Framework**: Spring Boot 3.5 con Thymeleaf
 - **Puerto**: 8080
 - **Ejecutar**: `mvn spring-boot:run`
 - **Estructura**: Spring MVC, motor de plantillas Thymeleaf, auto-configuración
