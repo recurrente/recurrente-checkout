@@ -19,7 +19,7 @@ Accede a `http://localhost:8080`
 
 ## Características Específicas
 
-- Spring Boot 3.1 con Thymeleaf
+- Spring Boot 3.5 con Thymeleaf
 - Motor de plantillas Thymeleaf
 - Auto-configuración de Spring Boot
 - Servicio de archivos estáticos desde `static/`

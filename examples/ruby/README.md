@@ -2,6 +2,8 @@
 
 ## Ejecutar
 
+Requiere Ruby 3.0 o superior.
+
 ```bash
 bundle install
 ruby app.rb

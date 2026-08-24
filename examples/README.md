@@ -10,8 +10,8 @@ Para información detallada sobre todos los ejemplos, consulta la sección **"Ej
 
 - [PHP](php/) - PHP vanilla con servidor integrado
 - [React](react/) - React 18 con React Router
-- [C#](csharp/) - ASP.NET Core 7.0 MVC
-- [Java](java/) - Spring Boot 3.1 con Thymeleaf
+- [C#](csharp/) - ASP.NET Core 8.0 MVC
+- [Java](java/) - Spring Boot 3.5 con Thymeleaf
 - [ASP Classic](asp/) - ASP Classic con IIS
 
 Cada ejemplo incluye su propio README con instrucciones específicas de configuración.

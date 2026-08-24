@@ -1,1 +1,6 @@
 example/.env
+node_modules/
+dist/
+target/
+bin/
+obj/

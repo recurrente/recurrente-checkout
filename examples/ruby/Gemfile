@@ -1,10 +1,13 @@
 source "https://rubygems.org"
 
-gem "sinatra", "~> 3.0"
+ruby ">= 3.0"
+
+gem "sinatra", "~> 4.2"
 gem "sinatra-cross_origin", "~> 0.4"
 gem "dotenv", "~> 2.8"
 gem "pry", "~> 0.14"
+gem "rackup", "~> 2.3"
 
 group :development do
-  gem "puma", "~> 6.0"
+  gem "puma", "~> 7.2"
 end

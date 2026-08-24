@@ -20,6 +20,7 @@ Accede a `https://localhost:7001` o `http://localhost:5001`
 
 ## Características Específicas
 
+- .NET 8
 - Arquitectura ASP.NET Core MVC
 - Servicio de archivos estáticos desde `wwwroot`
 - HTTPS por defecto (localhost:7001)
