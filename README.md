@@ -311,3 +311,7 @@ Consulta el directorio `examples/` para ejemplos de implementaciones completas.
 - Para crear checkouts: Consulta la [documentación de creación de checkouts](https://docs.recurrente.com)
 - Para preguntas de integración: Revisa esta guía y las implementaciones de ejemplo
 - Si te quedan más dudas o tienes problemas, únete a nuestro [Discord](https://discord.gg/QhKPEkSKp2)
+
+## SDKs móviles (release candidate)
+
+Los adaptadores de React Native, Swift y Kotlin están en [`mobile/`](mobile/README.md). Flutter continúa en su [repositorio existente](https://github.com/recurrente/recurrente-checkout-flutter). Aún requieren la validación nativa/3DS descrita en esa guía; no están publicados por este cambio.

@@ -1,0 +1,48 @@
+name: Mobile checkout packages
+on:
+  pull_request:
+    paths: ['mobile/**', 'Package.swift', '.github/workflows/mobile.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: mobile-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  contract-and-react-native:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: mobile/react-native/package-lock.json
+      - run: node mobile/scripts/generate-shell.mjs --check
+      - run: node --test mobile/test/*.test.cjs
+      - run: npm ci --ignore-scripts && npm run build && npm test && node scripts/patch-webview.cjs && node scripts/patch-webview.cjs --check && npm pack --dry-run
+        working-directory: mobile/react-native
+  swift:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test
+      - name: Compile the UIKit and WebKit adapter for iOS Simulator
+        run: xcodebuild -scheme RecurrenteCheckout -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/checkout-derived CODE_SIGNING_ALLOWED=NO build
+  kotlin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - run: gradle --no-daemon testDebugUnitTest lintDebug assembleRelease
+        working-directory: mobile/kotlin

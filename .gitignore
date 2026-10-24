@@ -4,3 +4,10 @@ dist/
 target/
 bin/
 obj/
+mobile/react-native/node_modules/
+mobile/react-native/lib/
+mobile/kotlin/.gradle/
+mobile/kotlin/build/
+mobile/kotlin/local.properties
+.build/
+.swiftpm/
