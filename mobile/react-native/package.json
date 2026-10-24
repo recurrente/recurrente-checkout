@@ -1,0 +1,45 @@
+{
+  "name": "recurrente-checkout-react-native",
+  "version": "0.1.0-rc.0",
+  "description": "Embedded Recurrente Checkout for React Native iOS and Android apps",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "react-native": "src/index.tsx",
+  "files": [
+    "lib",
+    "src",
+    "README.md",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.cjs",
+    "check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.76",
+    "react-native-get-random-values": ">=1.11 <3",
+    "react-native-webview": "14.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "react-native": "0.88.0",
+    "react-native-get-random-values": "2.0.0",
+    "react-native-webview": "14.0.1",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/recurrente/recurrente-checkout.git",
+    "directory": "mobile/react-native"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react-native-url-polyfill": "^4.0.0"
+  },
+  "bin": {
+    "recurrente-checkout-patch-webview": "scripts/patch-webview.cjs"
+  }
+}
